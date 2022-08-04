@@ -1,4 +1,6 @@
-interface IUser {
+import { CREATE_USER } from "../constants";
+
+export interface IUser {
   firstname: string;
   lastname: string;
   age: number;
@@ -7,7 +9,7 @@ interface IUser {
   bio?: string;
 }
 
-interface CreateUSerAction {
+export interface CreateUSerAction {
   readonly type: "CREATE_USER";
   readonly payload: IUser;
 }
@@ -23,8 +25,8 @@ export const userReducer = (
   action: Action
 ) => {
   switch (action.type) {
-    case "CREATE_USER":
-      return { ...state, user: action.payload };
+    case CREATE_USER:
+      return { ...state, userInfo: action.payload };
 
     default:
       return state;

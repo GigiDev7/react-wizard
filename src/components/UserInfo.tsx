@@ -1,7 +1,8 @@
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { IUserState } from "../reducers/userReducer";
+import { addUser } from "../actions/userActions";
 
 interface IProps {
   changeStep: () => void;
@@ -25,8 +26,10 @@ const UserInfo = ({ changeStep }: IProps) => {
   });
 
   const { userInfo } = useSelector((state: { user: IUserState }) => state.user);
+  const dispatch = useDispatch();
 
-  const handleSubmit = () => {
+  const handleSubmit = (vals: any) => {
+    dispatch(addUser(vals));
     changeStep();
   };
 
@@ -43,13 +46,12 @@ const UserInfo = ({ changeStep }: IProps) => {
         }}
         validationSchema={userInfoSchema}
         onSubmit={(vals) => {
-          handleSubmit();
-          console.log(vals);
+          handleSubmit(vals);
         }}
       >
         {({ errors, touched }) => (
           <Form className="flex flex-col gap-4 ">
-            <div className="flex flex-col w-full">
+            <div className="flex flex-col ">
               <label htmlFor="firstname">Firstname</label>
               <Field
                 type="text"

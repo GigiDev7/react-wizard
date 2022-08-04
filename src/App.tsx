@@ -1,5 +1,4 @@
 import { useState } from "react";
-import StepWizard from "react-step-wizard";
 import UserInfo from "./components/UserInfo";
 import UserItems from "./components/UserItems";
 
