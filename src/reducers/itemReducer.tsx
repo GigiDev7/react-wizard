@@ -3,7 +3,7 @@ interface IItem {
   name: string;
   price: number;
   quantity: number;
-  description: string;
+  description?: string;
 }
 
 interface AddItemAction {
@@ -28,7 +28,12 @@ export interface IItemsState {
 type Action = AddItemAction | RemoveItemAction | EditItemAction;
 
 export const itemReducer = (
-  state: IItemsState = { items: [] },
+  state: IItemsState = {
+    items: [
+      { id: "1", description: "desc", name: "item", price: 100, quantity: 2 },
+      { id: "2", description: "desc", name: "item", price: 100, quantity: 2 },
+    ],
+  },
   action: Action
 ) => {
   switch (action.type) {
@@ -36,7 +41,10 @@ export const itemReducer = (
       return { ...state, items: [...state.items] };
 
     case "REMOVE_ITEM":
-      return { ...state };
+      const filteredItems = state.items.filter(
+        (el) => el.id !== action.payload
+      );
+      return { ...state, items: filteredItems };
 
     case "EDIT_ITEM":
       return { ...state };
