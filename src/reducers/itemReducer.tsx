@@ -1,4 +1,4 @@
-interface IItem {
+export interface IItem {
   id: string;
   name: string;
   price: number;
@@ -18,7 +18,7 @@ interface RemoveItemAction {
 
 interface EditItemAction {
   readonly type: "EDIT_ITEM";
-  readonly payload: string;
+  readonly payload: IItem;
 }
 
 export interface IItemsState {
@@ -31,23 +31,28 @@ export const itemReducer = (
   state: IItemsState = {
     items: [
       { id: "1", description: "desc", name: "item", price: 100, quantity: 2 },
-      { id: "2", description: "desc", name: "item", price: 100, quantity: 2 },
+      { id: "2", description: "desc", name: "item", price: 200, quantity: 2 },
     ],
   },
   action: Action
 ) => {
   switch (action.type) {
     case "ADD_ITEM":
-      return { ...state, items: [...state.items] };
+      return { ...state, items: [...state.items, action.payload] };
 
-    case "REMOVE_ITEM":
+    case "REMOVE_ITEM": {
       const filteredItems = state.items.filter(
         (el) => el.id !== action.payload
       );
       return { ...state, items: filteredItems };
+    }
 
-    case "EDIT_ITEM":
-      return { ...state };
+    case "EDIT_ITEM": {
+      const filteredItems = state.items.filter(
+        (el) => el.id !== action.payload.id
+      );
+      return { ...state, items: [...filteredItems, action.payload] };
+    }
 
     default:
       return state;
