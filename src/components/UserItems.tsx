@@ -1,10 +1,14 @@
 import { StepWizardChildProps } from "react-step-wizard";
 
-const UserItems = (props: Partial<StepWizardChildProps>) => {
+interface IProps {
+  changeStep: () => void;
+}
+
+const UserItems = ({ changeStep }: IProps) => {
   return (
     <div>
       <h1>user item</h1>
-      <button onClick={props.previousStep}>prev</button>
+      <button onClick={() => changeStep()}>prev</button>
     </div>
   );
 };
