@@ -9,12 +9,16 @@ interface IProps {
   setIsItemFormShown: React.Dispatch<React.SetStateAction<boolean>>;
   setEditingItemId: React.Dispatch<React.SetStateAction<null | string>>;
   editingItemId: string | null;
+  setNotificationText: React.Dispatch<React.SetStateAction<string>>;
+  handleNotificationClose: () => void;
 }
 
 const ItemForm = ({
   setIsItemFormShown,
   setEditingItemId,
   editingItemId,
+  setNotificationText,
+  handleNotificationClose,
 }: IProps) => {
   const [itemInfo, setItemInfo] = useState({ name: "", price: 0, quantity: 0 });
 
@@ -51,11 +55,14 @@ const ItemForm = ({
       setIsItemFormShown(false);
       setEditingItemId(null);
       dispatch(editItem({ id: editingItemId, ...itemInfo }));
+      setNotificationText("Item Updated");
     } else {
       setIsItemFormShown(false);
       setEditingItemId(null);
       dispatch(addItem({ id: uuidv4(), ...itemInfo }));
+      setNotificationText("Item Added");
     }
+    handleNotificationClose();
   };
 
   return (

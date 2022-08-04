@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { IItemsState } from "../reducers/itemReducer";
 import ItemForm from "./ItemForm";
 import SingleItem from "./SingleItem";
+import Notification from "./Notification";
 
 interface IProps {
   changeStep: () => void;
@@ -13,6 +14,13 @@ const UserItems = ({ changeStep }: IProps) => {
 
   const [isItemFormShown, setIsItemFormShown] = useState(false);
   const [editingItemId, setEditingItemId] = useState<null | string>(null);
+  const [notificationText, setNotificationText] = useState("");
+
+  const handleNotificationClose = () => {
+    setTimeout(() => {
+      setNotificationText("");
+    }, 2000);
+  };
 
   const onAddItemClick = () => {
     setIsItemFormShown(true);
@@ -21,6 +29,7 @@ const UserItems = ({ changeStep }: IProps) => {
 
   return (
     <>
+      {notificationText && <Notification text={notificationText} />}
       <div className="flex flex-col w-[60%] ">
         <button
           onClick={onAddItemClick}
@@ -43,6 +52,8 @@ const UserItems = ({ changeStep }: IProps) => {
             <div className="border-[2px] border-gray-200">
               {items.map((el) => (
                 <SingleItem
+                  handleNotificationClose={handleNotificationClose}
+                  setNotificationText={setNotificationText}
                   setEditingItemId={setEditingItemId}
                   setIsItemFormShown={setIsItemFormShown}
                   {...el}
@@ -64,6 +75,8 @@ const UserItems = ({ changeStep }: IProps) => {
           editingItemId={editingItemId}
           setEditingItemId={setEditingItemId}
           setIsItemFormShown={setIsItemFormShown}
+          setNotificationText={setNotificationText}
+          handleNotificationClose={handleNotificationClose}
         />
       )}
     </>

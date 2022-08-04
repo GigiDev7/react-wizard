@@ -10,6 +10,8 @@ interface IProps {
   quantity: number;
   setIsItemFormShown: React.Dispatch<React.SetStateAction<boolean>>;
   setEditingItemId: React.Dispatch<React.SetStateAction<null | string>>;
+  setNotificationText: React.Dispatch<React.SetStateAction<string>>;
+  handleNotificationClose: () => void;
 }
 
 const SingleItem = ({
@@ -19,11 +21,15 @@ const SingleItem = ({
   quantity,
   setIsItemFormShown,
   setEditingItemId,
+  setNotificationText,
+  handleNotificationClose,
 }: IProps) => {
   const dispatch = useDispatch();
 
   const onRemoveClick = () => {
     dispatch(deleteItem(id));
+    setNotificationText("Item Removed");
+    handleNotificationClose();
   };
 
   const onUpdateClick = () => {
