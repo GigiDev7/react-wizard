@@ -1,5 +1,9 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import { useSelector, useDispatch } from "react-redux";
+import { IItemsState } from "../reducers/itemReducer";
+import { addItem, editItem } from "../actions/itemActions";
+import { v4 as uuidv4 } from "uuid";
 
 interface IProps {
   setIsItemFormShown: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,6 +17,20 @@ const ItemForm = ({
   editingItemId,
 }: IProps) => {
   const [itemInfo, setItemInfo] = useState({ name: "", price: 0, quantity: 0 });
+
+  const { items } = useSelector((state: { item: IItemsState }) => state.item);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (editingItemId) {
+      const editingItem = items.find((el) => el.id === editingItemId);
+      setItemInfo({
+        name: editingItem!.name,
+        price: editingItem!.price,
+        quantity: editingItem!.quantity,
+      });
+    }
+  }, [editingItemId, items]);
 
   const onCloseClick = () => {
     setIsItemFormShown(false);
@@ -29,7 +47,15 @@ const ItemForm = ({
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log(itemInfo);
+    if (editingItemId) {
+      setIsItemFormShown(false);
+      setEditingItemId(null);
+      dispatch(editItem({ id: editingItemId, ...itemInfo }));
+    } else {
+      setIsItemFormShown(false);
+      setEditingItemId(null);
+      dispatch(addItem({ id: uuidv4(), ...itemInfo }));
+    }
   };
 
   return (
