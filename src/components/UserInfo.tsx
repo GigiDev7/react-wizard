@@ -53,7 +53,7 @@ const UserInfo = ({ changeStep }: IProps) => {
         {({ errors, touched }) => (
           <Form className="flex flex-col gap-4 w-[500px]">
             <div className="flex flex-col ">
-              <label className="font-semibold" htmlFor="firstname">
+              <label className="font-semibold mb-1" htmlFor="firstname">
                 Firstname
               </label>
               <Field
@@ -67,7 +67,7 @@ const UserInfo = ({ changeStep }: IProps) => {
               ) : null}
             </div>
             <div className="flex flex-col ">
-              <label className="font-semibold" htmlFor="lastname">
+              <label className="font-semibold mb-1" htmlFor="lastname">
                 Lastname
               </label>
               <Field
@@ -81,7 +81,7 @@ const UserInfo = ({ changeStep }: IProps) => {
               ) : null}
             </div>
             <div className="flex flex-col ">
-              <label className="font-semibold" htmlFor="age">
+              <label className="font-semibold mb-1" htmlFor="age">
                 Age
               </label>
               <Field
@@ -95,7 +95,7 @@ const UserInfo = ({ changeStep }: IProps) => {
               ) : null}
             </div>
             <div className="flex flex-col">
-              <label className="font-semibold">Country of residence</label>
+              <label className="font-semibold mb-1">Country of residence</label>
               <Field
                 className="border-black border-[1px] "
                 name="residence"
@@ -115,7 +115,7 @@ const UserInfo = ({ changeStep }: IProps) => {
               ) : null}
             </div>
             <div>
-              <p className="font-semibold">Select Gender</p>
+              <p className="font-semibold mb-1">Select Gender</p>
               <div className=" gap-1 inline-flex">
                 <label>Male</label>
                 <Field
@@ -141,7 +141,7 @@ const UserInfo = ({ changeStep }: IProps) => {
               ) : null}
             </div>
             <div className="flex flex-col">
-              <label className="font-semibold">Bio</label>
+              <label className="font-semibold mb-1">Bio</label>
               <Field
                 placeholder="Tell us something about yourself"
                 name="bio"
