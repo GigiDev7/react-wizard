@@ -21,6 +21,7 @@ const ItemForm = ({
   handleNotificationClose,
 }: IProps) => {
   const [itemInfo, setItemInfo] = useState({ name: "", price: 0, quantity: 0 });
+  const [isError, setIsError] = useState(false);
 
   const { items } = useSelector((state: { item: IItemsState }) => state.item);
   const dispatch = useDispatch();
@@ -51,6 +52,12 @@ const ItemForm = ({
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
+    if (!itemInfo.name || !itemInfo.price || !itemInfo.quantity) {
+      setIsError(true);
+      return;
+    }
+
     if (editingItemId) {
       setIsItemFormShown(false);
       setEditingItemId(null);
@@ -62,6 +69,7 @@ const ItemForm = ({
       dispatch(addItem({ id: uuidv4(), ...itemInfo }));
       setNotificationText("Item Added");
     }
+    setIsError(false);
     handleNotificationClose();
   };
 
@@ -81,6 +89,9 @@ const ItemForm = ({
           <h2 className="font-semibold">
             {editingItemId ? "Edit" : "Add"} item
           </h2>
+          {isError && (
+            <span className="text-red-500">All fields are required</span>
+          )}
           <div className="flex flex-col w-[70%]">
             <label className="font-semibold" htmlFor="name">
               Name
