@@ -84,7 +84,7 @@ const ItemForm = ({
 
         <form
           onSubmit={(e) => handleSubmit(e)}
-          className="flex flex-col gap-4 w-[400px] h-[350px] items-center justify-center"
+          className="flex flex-col gap-4 w-[400px] h-[380px] items-center justify-center "
         >
           <h2 className="font-semibold">
             {editingItemId ? "Edit" : "Add"} item
@@ -101,7 +101,7 @@ const ItemForm = ({
               value={itemInfo.name}
               name="name"
               id="name"
-              className="border-[1px] border-black"
+              className="border-[1px] border-black pl-1 py-1"
               type="text"
             />
           </div>
@@ -114,7 +114,7 @@ const ItemForm = ({
               value={itemInfo.price}
               name="price"
               id="price"
-              className="border-[1px] border-black"
+              className="border-[1px] border-black pl-1 py-1"
               type="number"
             />
           </div>
@@ -127,7 +127,7 @@ const ItemForm = ({
               value={itemInfo.quantity}
               name="quantity"
               id="quantity"
-              className="border-[1px] border-black"
+              className="border-[1px] border-black pl-1 py-1"
               type="number"
             />
             <button
