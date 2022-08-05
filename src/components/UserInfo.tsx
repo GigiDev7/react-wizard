@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
 import { IUserState } from "../reducers/userReducer";
 import { addUser } from "../actions/userActions";
+import { countryData } from "../countriesData";
 
 interface IProps {
   changeStep: () => void;
@@ -93,19 +94,21 @@ const UserInfo = ({ changeStep }: IProps) => {
                 <span className="text-sm text-red-600">{errors.age}</span>
               ) : null}
             </div>
-            <div className="flex flex-col ">
+            <div className="flex flex-col">
               <label className="font-semibold">Country of residence</label>
               <Field
-                className="border-black border-[1px]"
+                className="border-black border-[1px] "
                 name="residence"
                 as="select"
               >
                 <option value="default" disabled={true}>
                   Select country...
                 </option>
-                <option value="ge">ge</option>
-                <option>gr</option>
-                <option>he</option>
+                {countryData.map((item) => (
+                  <option key={item.name} value={item.name}>
+                    {item.name}
+                  </option>
+                ))}
               </Field>
               {errors.residence && touched.residence ? (
                 <span className="text-sm text-red-600">{errors.residence}</span>
