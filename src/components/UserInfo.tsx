@@ -50,9 +50,11 @@ const UserInfo = ({ changeStep }: IProps) => {
         }}
       >
         {({ errors, touched }) => (
-          <Form className="flex flex-col gap-4 ">
+          <Form className="flex flex-col gap-4 w-[500px]">
             <div className="flex flex-col ">
-              <label htmlFor="firstname">Firstname</label>
+              <label className="font-semibold" htmlFor="firstname">
+                Firstname
+              </label>
               <Field
                 type="text"
                 id="firstname"
@@ -64,7 +66,9 @@ const UserInfo = ({ changeStep }: IProps) => {
               ) : null}
             </div>
             <div className="flex flex-col ">
-              <label htmlFor="lastname">Lastname</label>
+              <label className="font-semibold" htmlFor="lastname">
+                Lastname
+              </label>
               <Field
                 type="text"
                 className="border-black border-[1px]"
@@ -76,7 +80,9 @@ const UserInfo = ({ changeStep }: IProps) => {
               ) : null}
             </div>
             <div className="flex flex-col ">
-              <label htmlFor="age">Age</label>
+              <label className="font-semibold" htmlFor="age">
+                Age
+              </label>
               <Field
                 type="number"
                 className="border-black border-[1px]"
@@ -88,7 +94,7 @@ const UserInfo = ({ changeStep }: IProps) => {
               ) : null}
             </div>
             <div className="flex flex-col ">
-              <label>Country of residence</label>
+              <label className="font-semibold">Country of residence</label>
               <Field
                 className="border-black border-[1px]"
                 name="residence"
@@ -106,6 +112,7 @@ const UserInfo = ({ changeStep }: IProps) => {
               ) : null}
             </div>
             <div>
+              <p className="font-semibold">Select Gender</p>
               <div className=" gap-1 inline-flex">
                 <label>Male</label>
                 <Field
@@ -131,7 +138,7 @@ const UserInfo = ({ changeStep }: IProps) => {
               ) : null}
             </div>
             <div className="flex flex-col">
-              <label>Bio</label>
+              <label className="font-semibold">Bio</label>
               <Field
                 placeholder="Tell us something about yourself"
                 name="bio"
@@ -140,7 +147,12 @@ const UserInfo = ({ changeStep }: IProps) => {
               />
             </div>
 
-            <button type="submit">Submit</button>
+            <button
+              className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded mt-4 w-[40%] mx-auto text-white font-semibold"
+              type="submit"
+            >
+              Next
+            </button>
           </Form>
         )}
       </Formik>

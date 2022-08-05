@@ -10,7 +10,7 @@ export interface IUser {
 }
 
 export interface CreateUSerAction {
-  readonly type: "CREATE_USER";
+  readonly type: typeof CREATE_USER;
   readonly payload: IUser;
 }
 

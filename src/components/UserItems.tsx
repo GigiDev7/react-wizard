@@ -45,9 +45,9 @@ const UserItems = ({ changeStep }: IProps) => {
         ) : (
           <>
             <div className="flex justify-between ">
-              <p className="w-[30%] text-center">Item Name</p>
-              <p className="w-[30%] text-center">Item Price</p>
-              <p className="w-[30%] text-center">Item Quantity</p>
+              <p className="w-[30%] text-center font-semibold">Item Name</p>
+              <p className="w-[30%] text-center font-semibold">Item Price</p>
+              <p className="w-[30%] text-center font-semibold">Item Quantity</p>
             </div>
             <div className="border-[2px] border-gray-200">
               {items.map((el) => (
