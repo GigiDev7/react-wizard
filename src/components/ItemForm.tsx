@@ -53,7 +53,7 @@ const ItemForm = ({
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    if (!itemInfo.name || !itemInfo.price || !itemInfo.quantity) {
+    if (!itemInfo.name) {
       setIsError(true);
       return;
     }
@@ -90,7 +90,7 @@ const ItemForm = ({
             {editingItemId ? "Edit" : "Add"} item
           </h2>
           {isError && (
-            <span className="text-red-500">All fields are required</span>
+            <span className="text-red-500">Item name is required</span>
           )}
           <div className="flex flex-col w-[70%]">
             <label className="font-semibold" htmlFor="name">
@@ -131,7 +131,7 @@ const ItemForm = ({
               type="number"
             />
             <button
-              className="mt-6 bg-blue-500 hover:bg-blue-600 px-4 py-2 w-[40%] rounded mx-auto"
+              className="mt-6 bg-blue-500 hover:bg-blue-600 px-4 py-2 w-[40%] rounded mx-auto text-white"
               type="submit"
             >
               Submit

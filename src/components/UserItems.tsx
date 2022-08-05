@@ -31,12 +31,21 @@ const UserItems = ({ changeStep }: IProps) => {
     <>
       {notificationText && <Notification text={notificationText} />}
       <div className="flex flex-col w-[60%] ">
-        <button
-          onClick={onAddItemClick}
-          className="mb-10 flex items-center gap-1 bg-blue-500 hover:bg-blue-600 px-4 py-1 w-fit text-white rounded"
-        >
-          Add item
-        </button>
+        <div className="flex justify-between h-fit mb-20">
+          <button
+            className="bg-blue-500 hover:bg-blue-600 px-5 py-2 text-white rounded w-fit"
+            onClick={() => changeStep()}
+          >
+            Back
+          </button>
+
+          <button
+            onClick={onAddItemClick}
+            className="   bg-blue-500 hover:bg-blue-600 px-4 py-1 w-fit text-white rounded"
+          >
+            Add item
+          </button>
+        </div>
 
         {!items.length ? (
           <div className="flex justify-center font-semibold">
@@ -63,12 +72,6 @@ const UserItems = ({ changeStep }: IProps) => {
             </div>{" "}
           </>
         )}
-        <button
-          className="bg-blue-500 hover:bg-blue-600 px-5 py-2 text-white rounded w-fit mt-20"
-          onClick={() => changeStep()}
-        >
-          Back
-        </button>
       </div>
       {isItemFormShown && (
         <ItemForm

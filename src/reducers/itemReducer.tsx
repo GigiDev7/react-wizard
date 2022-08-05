@@ -47,10 +47,9 @@ export const itemReducer = (
     }
 
     case EDIT_ITEM: {
-      const filteredItems = state.items.filter(
-        (el) => el.id !== action.payload.id
-      );
-      return { ...state, items: [...filteredItems, action.payload] };
+      let targetItem = state.items.find((el) => el.id === action.payload.id);
+      Object.assign(targetItem as IItem, action.payload);
+      return { ...state };
     }
 
     default:
