@@ -10,7 +10,7 @@ function App() {
   };
 
   return (
-    <div className="flex justify-center mt-16">
+    <div className="flex justify-center pt-16 h-[100vh] bg-slate-50">
       {step === 0 ? (
         <UserInfo changeStep={changeStep} />
       ) : (
