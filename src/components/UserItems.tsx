@@ -53,7 +53,7 @@ const UserItems = ({ changeStep }: IProps) => {
           </div>
         ) : (
           <>
-            <div className="flex justify-between ">
+            <div className="flex justify-between mb-3">
               <p className="w-[30%] text-center font-semibold">Item Name</p>
               <p className="w-[30%] text-center font-semibold">Item Price</p>
               <p className="w-[30%] text-center font-semibold">Item Quantity</p>

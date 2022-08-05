@@ -59,7 +59,7 @@ const UserInfo = ({ changeStep }: IProps) => {
               <Field
                 type="text"
                 id="firstname"
-                className="border-black border-[1px] w-full"
+                className="border-black border-[1px] w-full py-1 pl-1"
                 name="firstname"
               />
               {errors.firstname && touched.firstname ? (
@@ -72,7 +72,7 @@ const UserInfo = ({ changeStep }: IProps) => {
               </label>
               <Field
                 type="text"
-                className="border-black border-[1px]"
+                className="border-black border-[1px] py-1 pl-1"
                 id="lastname"
                 name="lastname"
               />
@@ -86,7 +86,7 @@ const UserInfo = ({ changeStep }: IProps) => {
               </label>
               <Field
                 type="number"
-                className="border-black border-[1px]"
+                className="border-black border-[1px] py-1 pl-1"
                 id="age"
                 name="age"
               />
@@ -97,7 +97,7 @@ const UserInfo = ({ changeStep }: IProps) => {
             <div className="flex flex-col">
               <label className="font-semibold mb-1">Country of residence</label>
               <Field
-                className="border-black border-[1px] "
+                className="border-black border-[1px] py-1 "
                 name="residence"
                 as="select"
               >
@@ -143,6 +143,7 @@ const UserInfo = ({ changeStep }: IProps) => {
             <div className="flex flex-col">
               <label className="font-semibold mb-1">Bio</label>
               <Field
+                maxLength={200}
                 placeholder="Tell us something about yourself"
                 name="bio"
                 as="textarea"
