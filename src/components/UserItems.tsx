@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { IItemsState } from "../reducers/itemReducer";
 import ItemForm from "./ItemForm";
@@ -7,14 +7,22 @@ import Notification from "./Notification";
 
 interface IProps {
   changeStep: () => void;
+  wasUserCreated: boolean;
 }
 
-const UserItems = ({ changeStep }: IProps) => {
+const UserItems = ({ changeStep, wasUserCreated }: IProps) => {
   const { items } = useSelector((state: { item: IItemsState }) => state.item);
 
   const [isItemFormShown, setIsItemFormShown] = useState(false);
   const [editingItemId, setEditingItemId] = useState<null | string>(null);
   const [notificationText, setNotificationText] = useState("");
+
+  useEffect(() => {
+    if (!wasUserCreated) {
+      setNotificationText("User Created");
+      handleNotificationClose();
+    }
+  }, [wasUserCreated]);
 
   const handleNotificationClose = () => {
     setTimeout(() => {
@@ -69,7 +77,7 @@ const UserItems = ({ changeStep }: IProps) => {
                   key={el.id}
                 />
               ))}
-            </div>{" "}
+            </div>
           </>
         )}
       </div>
